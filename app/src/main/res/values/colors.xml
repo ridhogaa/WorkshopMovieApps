@@ -10,5 +10,7 @@
     
     <color name="yellow">#FEA923</color>
     <color name="dark_blue">#05103A</color>
+    <color name="grey_50">#80FFFFFF</color>
+    <color name="grey_10">#1AFFFFFF</color>
 
 </resources>
