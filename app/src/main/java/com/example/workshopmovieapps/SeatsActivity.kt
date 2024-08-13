@@ -1,5 +1,6 @@
 package com.example.workshopmovieapps
 
+import android.content.Intent
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.GridLayoutManager
@@ -39,6 +40,13 @@ class SeatsActivity : AppCompatActivity() {
         _binding = ActivitySeatsBinding.inflate(layoutInflater)
         setContentView(binding.root)
         setUpRecyclerView()
+        toDetail()
+    }
+
+    private fun toDetail() {
+        binding.ivBack.setOnClickListener {
+            startActivity(Intent(this,DetailActivity::class.java))
+        }
     }
 
     private fun setUpSumSeatAndPrice() = binding.run {

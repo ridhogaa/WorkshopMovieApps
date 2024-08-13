@@ -21,11 +21,7 @@ import com.google.android.material.tabs.TabLayoutMediator
 class MainActivity : AppCompatActivity() {
     private var _binding: ActivityMainBinding? = null
     private val binding get() = _binding!!
-    private val movieAdapter: MovieAdapter by lazy {
-        MovieAdapter{
-
-        }
-    }
+    private lateinit var movieAdapter: MovieAdapter
     private val voucherAdapter: VoucherAdapter by lazy {
         VoucherAdapter{
 
@@ -40,11 +36,15 @@ class MainActivity : AppCompatActivity() {
         setRvVoucher()
     }
 
-    private fun setRvMovie() = with(binding){
-        rvMovie.adapter = movieAdapter
-        rvMovie.layoutManager = LinearLayoutManager(this@MainActivity, LinearLayoutManager.HORIZONTAL,false)
-        rvMovie.setHasFixedSize(true)
-        movieAdapter.setItems(getMovieList(this@MainActivity))
+    private fun setRvMovie() {
+        movieAdapter = MovieAdapter()
+        binding.rvMovie.apply {
+            adapter = movieAdapter
+            layoutManager =
+                LinearLayoutManager(this@MainActivity, LinearLayoutManager.HORIZONTAL,false)
+            setHasFixedSize(true)
+            movieAdapter.differ.submitList(getMovieList(this@MainActivity))
+        }
     }
 
     private fun setRvVoucher() = with(binding){

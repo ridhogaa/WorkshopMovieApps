@@ -1,5 +1,6 @@
 package com.example.workshopmovieapps
 
+import android.content.Intent
 import android.os.Bundle
 import androidx.activity.enableEdgeToEdge
 import androidx.annotation.StringRes
@@ -29,6 +30,20 @@ class DetailActivity : AppCompatActivity() {
         _binding = ActivityDetailBinding.inflate(layoutInflater)
         setContentView(binding.root)
         setViewPager()
+        toPickSeats()
+        toHome()
+    }
+
+    private fun toHome() {
+        binding.ivBack.setOnClickListener {
+            startActivity(Intent(this,MainActivity::class.java))
+        }
+    }
+
+    private fun toPickSeats() {
+        binding.materialButton.setOnClickListener {
+            startActivity(Intent(this,SeatsActivity::class.java))
+        }
     }
 
 

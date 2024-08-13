@@ -1,55 +1,54 @@
 package com.example.workshopmovieapps.adapter
 
+import android.content.Intent
+import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.ViewGroup
+import androidx.recyclerview.widget.AsyncListDiffer
+import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.RecyclerView
+import com.example.workshopmovieapps.DetailActivity
 import com.example.workshopmovieapps.data.Movie
+import com.example.workshopmovieapps.databinding.ItemListMovieBinding.inflate
 import com.example.workshopmovieapps.databinding.ItemListMovieBinding
 
-class MovieAdapter(private val itemClick: (Movie) -> Unit) :
-    RecyclerView.Adapter<MovieAdapter.MenuMovieHolder>() {
+class MovieAdapter : RecyclerView.Adapter<MovieAdapter.ListViewHolder>(){
+    private val callback = object : DiffUtil.ItemCallback<Movie>(){
+        override fun areItemsTheSame(
+            oldItem: Movie,
+            newItem: Movie
+        ): Boolean =
+            oldItem.id == newItem.id
 
-    class MenuMovieHolder(
-        private val binding: ItemListMovieBinding,
-        val itemClick: (Movie) -> Unit
-    ) :
-        RecyclerView.ViewHolder(binding.root) {
-        fun bindView(item: Movie) {
-            with(item) {
-                itemView.setOnClickListener { itemClick(this) }
-                binding.run {
-                    ivMovie.setImageResource(img)
-                }
+        override fun areContentsTheSame(
+            oldItem: Movie,
+            newItem: Movie
+        ): Boolean =
+            oldItem == newItem
+
+    }
+    val differ = AsyncListDiffer(this,callback)
+
+    inner class ListViewHolder(private val binding: ItemListMovieBinding):
+        RecyclerView.ViewHolder(binding.root){
+        fun bind (item: Movie){
+            binding.ivMovie.setImageResource(item.img)
+            binding.root.setOnClickListener {
+                val intent = Intent(binding.root.context,DetailActivity::class.java)
+                binding.root.context.startActivity(intent)
+
             }
         }
     }
 
-    private var items: MutableList<Movie> = mutableListOf()
+    override fun onCreateViewHolder(
+        parent: ViewGroup,
+        viewType: Int,
+    ): ListViewHolder =
+        ListViewHolder(inflate(LayoutInflater.from(parent.context),parent,false))
 
-    fun setItems(items:List<Movie>){
-        this.items.clear()
-        this.items.addAll(items)
-        notifyDataSetChanged()
-    }
-    fun addItems(items: List<Movie>) {
-        this.items.addAll(items)
-        notifyDataSetChanged()
-    }
+    override fun getItemCount(): Int = differ.currentList.size
 
-    fun clearItems() {
-        this.items.clear()
-        notifyDataSetChanged()
-    }
-
-    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): MenuMovieHolder {
-        val binding = ItemListMovieBinding.inflate(LayoutInflater.from(parent.context), parent, false)
-        return MenuMovieHolder(binding, itemClick)
-    }
-
-    override fun getItemCount(): Int = items.size
-
-    override fun onBindViewHolder(holder: MenuMovieHolder, position: Int) {
-        holder.bindView(items[position])
-    }
-
+    override fun onBindViewHolder(holder: ListViewHolder, position: Int) =
+        holder.bind(differ.currentList[position])
 }
