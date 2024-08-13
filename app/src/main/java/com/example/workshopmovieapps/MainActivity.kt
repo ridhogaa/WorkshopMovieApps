@@ -5,13 +5,18 @@ import android.os.Bundle
 import android.graphics.Color
 import android.widget.AutoCompleteTextView
 import android.widget.ImageView
+import androidx.annotation.StringRes
 import androidx.core.content.ContextCompat
 import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.viewpager2.widget.ViewPager2
 import com.example.workshopmovieapps.adapter.MovieAdapter
+import com.example.workshopmovieapps.adapter.SectionsPagerAdapter
 import com.example.workshopmovieapps.adapter.VoucherAdapter
 import com.example.workshopmovieapps.data.getMovieList
 import com.example.workshopmovieapps.data.getVoucherList
 import com.example.workshopmovieapps.databinding.ActivityMainBinding
+import com.google.android.material.tabs.TabLayout
+import com.google.android.material.tabs.TabLayoutMediator
 
 class MainActivity : AppCompatActivity() {
     private var _binding: ActivityMainBinding? = null
