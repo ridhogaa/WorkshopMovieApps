@@ -6,7 +6,8 @@ import com.example.workshopmovieapps.R
 
 data class Movie(
     @DrawableRes
-    val img:Int
+    val img:Int,
+    val id: Int,
 )
 
 fun getMovieList(context:Context):List<Movie>{
@@ -14,27 +15,32 @@ fun getMovieList(context:Context):List<Movie>{
     listMovie.clear()
     listMovie.add(
         Movie(
-            R.drawable.img_movie4
+            R.drawable.img_movie4,
+            1
         )
     )
     listMovie.add(
         Movie(
-            R.drawable.img_movie4
+            R.drawable.img_movie4,
+            2
         )
     )
     listMovie.add(
         Movie(
-            R.drawable.img_movie4
+            R.drawable.img_movie4,
+            3
         )
     )
     listMovie.add(
         Movie(
-            R.drawable.img_movie4
+            R.drawable.img_movie4,
+            4
         )
     )
     listMovie.add(
         Movie(
-            R.drawable.img_movie4
+            R.drawable.img_movie4,
+            5
         )
     )
     return listMovie

@@ -48,6 +48,11 @@ class JadwalFragment : Fragment() {
         rvSchedule.layoutManager = LinearLayoutManager(requireContext(),LinearLayoutManager.HORIZONTAL,false)
         rvSchedule.setHasFixedSize(true)
         scheduleAdapter.setItems(getScheduleList(requireContext()))
+
+        rvSchedule2.adapter = scheduleAdapter
+        rvSchedule2.layoutManager = LinearLayoutManager(requireContext(),LinearLayoutManager.HORIZONTAL,false)
+        rvSchedule2.setHasFixedSize(true)
+        scheduleAdapter.setItems(getScheduleList(requireContext()))
     }
 
     private fun setRvDate() = with(binding){
