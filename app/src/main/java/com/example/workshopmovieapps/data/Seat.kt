@@ -13,9 +13,11 @@ fun generateSeat(): List<Seat> {
             i == 42 || i == 43 || i == 44 ||
             i == 48 || i == 49 || i == 57 ||
             i == 59 || i == 73 || i == 74
-        ) list.add(Seat(i, false, true)) else {
+        )
+            list.add(Seat(i, false, true))
+        else
             list.add(Seat(i, false, false))
-        }
+
     }
     return list
 }

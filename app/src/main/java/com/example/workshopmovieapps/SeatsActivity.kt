@@ -6,16 +6,27 @@ import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.workshopmovieapps.adapter.SeatAdapter
 import com.example.workshopmovieapps.adapter.SeatDescAdapter
+import com.example.workshopmovieapps.data.Seat
 import com.example.workshopmovieapps.data.generateSeat
 import com.example.workshopmovieapps.data.getVoucherList
 import com.example.workshopmovieapps.databinding.ActivitySeatsBinding
+import java.text.NumberFormat
+import java.util.Locale
 
 class SeatsActivity : AppCompatActivity() {
+
+    private val seatList: MutableList<Seat> = mutableListOf()
 
     private var _binding: ActivitySeatsBinding? = null
     private val binding get() = _binding!!
     private val seatAdapter: SeatAdapter by lazy {
         SeatAdapter {
+            if (it.isSelected && !it.isBooked) {
+                seatList.add(it)
+            } else {
+                seatList.remove(it)
+            }
+            setUpSumSeatAndPrice()
         }
     }
 
@@ -28,6 +39,16 @@ class SeatsActivity : AppCompatActivity() {
         _binding = ActivitySeatsBinding.inflate(layoutInflater)
         setContentView(binding.root)
         setUpRecyclerView()
+    }
+
+    private fun setUpSumSeatAndPrice() = binding.run {
+        if (seatList.isNotEmpty()) {
+            tvCountSeat.text = seatList.count().toString() + " Kursi"
+            tvSumSeat.text = formatRupiah((seatList.count() * 50_000).toDouble())
+        } else {
+            tvCountSeat.text = "0 Kursi"
+            tvSumSeat.text = "0"
+        }
     }
 
     private fun setUpRecyclerView() {
@@ -46,6 +67,14 @@ class SeatsActivity : AppCompatActivity() {
             seatDescAdapter.setItems(listOf("Available", "Booked", "Selected"))
         }
     }
+
+    fun formatRupiah(amount: Double): String {
+        val localeID = Locale("in", "ID")
+        val numberFormat = NumberFormat.getCurrencyInstance(localeID)
+        numberFormat.maximumFractionDigits = 0 // To avoid decimal places
+        return numberFormat.format(amount)
+    }
+
 
     override fun onDestroy() {
         super.onDestroy()

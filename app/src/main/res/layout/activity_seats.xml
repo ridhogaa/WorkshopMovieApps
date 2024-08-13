@@ -118,7 +118,7 @@
         <TextView
                 android:id="@+id/tv_count_seat"
                 android:layout_width="0dp"
-                android:text="2 Kursi"
+                android:text="0 Kursi"
                 android:fontFamily="@font/outfit_regular"
                 android:textSize="16sp"
                 android:layout_margin="20dp"
@@ -133,7 +133,7 @@
         <TextView
                 android:id="@+id/tv_sum_seat"
                 android:layout_width="0dp"
-                android:text="Rp. 100.000"
+                android:text="Rp. 0"
                 android:textSize="16sp"
                 android:fontFamily="@font/outfit_regular"
                 android:layout_margin="20dp"
