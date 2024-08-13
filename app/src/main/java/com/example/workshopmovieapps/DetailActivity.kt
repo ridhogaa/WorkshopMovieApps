@@ -42,6 +42,7 @@ class DetailActivity : AppCompatActivity() {
         }.attach()
         tabs.setSelectedTabIndicatorColor(ContextCompat.getColor(this, R.color.yellow))
         supportActionBar?.elevation = 0f
+
     }
 
 }
