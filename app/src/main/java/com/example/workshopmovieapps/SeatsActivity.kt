@@ -47,7 +47,7 @@ class SeatsActivity : AppCompatActivity() {
             tvSumSeat.text = formatRupiah((seatList.count() * 50_000).toDouble())
         } else {
             tvCountSeat.text = "0 Kursi"
-            tvSumSeat.text = "0"
+            tvSumSeat.text = "Rp. 0"
         }
     }
 
