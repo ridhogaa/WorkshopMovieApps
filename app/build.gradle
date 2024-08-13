@@ -48,4 +48,6 @@ dependencies {
 
     //imgCircle
     implementation 'de.hdodenhof:circleimageview:3.1.0'
+    //viewPager2
+    implementation 'androidx.viewpager2:viewpager2:1.0.0'
 }
