@@ -72,8 +72,10 @@ class SeatsActivity : AppCompatActivity() {
         val localeID = Locale("in", "ID")
         val numberFormat = NumberFormat.getCurrencyInstance(localeID)
         numberFormat.maximumFractionDigits = 0 // To avoid decimal places
-        return numberFormat.format(amount)
+        val formattedAmount = numberFormat.format(amount)
+        return formattedAmount.replace("Rp", "Rp. ")
     }
+
 
 
     override fun onDestroy() {
