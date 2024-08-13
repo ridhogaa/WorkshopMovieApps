@@ -33,28 +33,33 @@ class SeatAdapter(private val itemClick: (Seat) -> Unit) :
             binding.run {
                 when {
                     seat.isBooked -> {
-                        setSeatAppearance(R.color.white, isEnabled = false)
+                        setSeatAppearance(R.color.white, isEnabled = false, isSelected = false)
                     }
 
                     seat.isSelected -> {
-                        setSeatAppearance(R.color.yellow)
+                        setSeatAppearance(R.color.yellow, isSelected = true)
                     }
 
                     else -> {
-                        setSeatAppearance(R.color.dark_blue)
+                        setSeatAppearance(R.color.dark_blue, isSelected = false)
                     }
                 }
             }
         }
 
-        private fun setSeatAppearance(colorRes: Int, isEnabled: Boolean = true) {
+        private fun setSeatAppearance(
+            colorRes: Int,
+            isEnabled: Boolean = true,
+            isSelected: Boolean
+        ) {
             binding.run {
                 val color = ContextCompat.getColor(btnSeat.context, colorRes)
                 btnSeat.setCardBackgroundColor(color)
                 btnSeat.isEnabled = isEnabled
-                if (!isEnabled) {
-                    btnSeat.strokeColor = color
-                }
+                btnSeat.strokeColor = if (isSelected) ContextCompat.getColor(
+                    btnSeat.context,
+                    colorRes
+                ) else ContextCompat.getColor(btnSeat.context, R.color.white)
             }
         }
     }
