@@ -4,7 +4,7 @@ import android.content.Context
 
 data class Date(
     val date:String,
-    val day:String
+    val day:String,
 )
 
 fun getDateList(context: Context):List<Date>{

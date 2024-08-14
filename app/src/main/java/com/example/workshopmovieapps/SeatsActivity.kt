@@ -41,6 +41,13 @@ class SeatsActivity : AppCompatActivity() {
         setContentView(binding.root)
         setUpRecyclerView()
         toDetail()
+        toPayment()
+    }
+
+    private fun toPayment() {
+        binding.materialButton.setOnClickListener {
+            startActivity(Intent(this,PaymentActivity::class.java))
+        }
     }
 
     private fun toDetail() {
