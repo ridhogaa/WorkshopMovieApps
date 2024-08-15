@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+    <item
+        android:id="@+id/homeFragment"
+        android:icon="@drawable/ic_home"
+        android:title="Beranda" />
+
+    <item
+        android:id="@+id/waktuAdzanFragment"
+        android:icon="@drawable/ic_ticket"
+        android:title="Tiket" />
+
+    <item
+        android:id="@+id/compassFragment"
+        android:title="Point"
+        android:icon="@drawable/ic_point"/>
+
+    <item
+        android:id="@+id/alquranFragment"
+        android:icon="@drawable/ic_profile"
+        android:title="Akun" />
+
+</menu>
